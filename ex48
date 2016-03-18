@@ -1,0 +1,29 @@
+#-*- coding:utf-8 -*-
+sentence = raw_input('>')
+lexicon = {'north':'direction','east':'direction','south':'direction','west':'direction','go':'verb', 'kill':'verb', 'eat':'verb',
+           'the':'stop', 'in':'stop', 'of':'stop','bear':'noun','princess':'noun'}
+def scan(sentence):
+    words = sentence.split( )
+    result = []
+    for item in words:
+        item1 = item.lower()
+        if lexicon.has_key(item1):
+            abbr = lexicon[item1]
+            val = (abbr,item)
+            result.append(val)
+        elif convert_number(item):
+            val1 = ('number',item)
+            result.append(val1)
+        else:
+            val2 = ('error',item1)
+            result.append(val2)
+    return result
+    
+def convert_number(s):
+    try:
+        return int(s)
+    except ValueError:
+        return None
+        
+re = scan(sentence)
+print re
